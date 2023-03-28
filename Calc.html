@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html>
+<head>
+ <title>My Calculator</title>
+ <style>
+  body {
+   font-family: Arial, sans-serif;
+   background-color: #f2f2f2;
+   margin: 0;
+   padding: 0;
+  }
+  
+  h1 {
+   text-align: center;
+   margin-top: 50px;
+   color: #333;
+  }
+  
+  .container {
+   max-width: 400px;
+   margin: 0 auto;
+   padding: 20px;
+   background-color: #fff;
+   border-radius: 5px;
+   box-shadow: 0 0 10px rgba(0,0,0,0.2);
+  }
+  
+  input[type="text"] {
+   padding: 10px;
+   width: 100%;
+   border: none;
+   border-bottom: 2px solid #333;
+   font-size: 24px;
+   margin-bottom: 20px;
+   text-align: right;
+   background-color: #eee;
+  }
+  
+  button {
+   padding: 10px;
+   background-color: #333;
+   color: #fff;
+   border: none;
+   border-radius: 5px;
+   cursor: pointer;
+   font-size: 24px;
+   margin: 5px;
+   width: 60px;
+   height: 60px;
+  }
+  
+  button:hover {
+   background-color: #444;
+  }
+  
+  button.clear {
+   background-color: #ff6347;
+  }
+  
+  button.clear:hover {
+   background-color: #ff7f50;
+  }
+ </style>
+</head>
+<body>
+ <h1>My Calculator</h1>
+ <div class="container">
+  <input type="text" id="result" disabled>
+  <button id="btnClear" class="clear">C</button>
+  <button id="btnDivide">/</button>
+  <button id="btnMultiply">*</button>
+  <button id="btnSubtract">-</button>
+  <button id="btnAdd">+</button>
+  <button id="btnEquals">=</button>
+  <button id="btnDecimal">.</button>
+  <button id="btnZero">0</button>
+  <button id="btnOne">1</button>
+  <button id="btnTwo">2</button>
+  <button id="btnThree">3</button>
+  <button id="btnFour">4</button>
+  <button id="btnFive">5</button>
+  <button id="btnSix">6</button>
+  <button id="btnSeven">7</button>
+  <button id="btnEight">8</button>
+  <button id="btnNine">9</button>
+ </div>
+ <script>
+  var result = document.getElementById("result");
+  var btnClear = document.getElementById("btnClear");
+  var btnDivide = document.getElementById("btnDivide");
+  var btnMultiply = document.getElementById("btnMultiply");
+  var btnSubtract = document.getElementById("btnSubtract");
+  var btnAdd = document.getElementById("btnAdd");
+  var btnEquals = document.getElementById("btnEquals");
+  var btnDecimal = document.getElementById("btnDecimal");
+  var btnZero = document.getElementById("btnZero");
+  var btnOne = document.getElementById("btnOne");
+  var btnTwo = document.getElementById("btnTwo");
+  var btnThree = document.getElementById("btnThree");
+  var btnFour = document.getElementById("btnFour");
+ var btnFive = document.getElementById("btnFive");
+ var btnSix = document.getElementById("btnSix");
+ var btnSeven = document.getElementById("btnSeven");
+ var btnEight = document.getElementById("btnEight");
+ var btnNine = document.getElementById("btnNine");
+
+ var inputVal = '';
+ var resultVal = '';
+ var operator = '';
+
+ function updateInputVal(num) {
+  if (inputVal.length < 10) {
+   inputVal += num;
+   result.value = inputVal;
+  }
+ }
+
+ function clearInputVal() {
+  inputVal = '';
+  result.value = '0';
+  operator = '';
+  resultVal = '';
+ }
+
+ function doOperation(op) {
+  if (inputVal !== '') {
+   if (resultVal !== '') {
+    var res = eval(resultVal + operator + inputVal);
+    resultVal = res.toString();
+   } else {
+    resultVal = inputVal;
+   }
+  }
+  operator = op;
+  inputVal = '';
+ }
+
+ function equals() {
+  if (inputVal !== '') {
+   if (resultVal !== '') {
+    var res = eval(resultVal + operator + inputVal);
+    result.value = res.toString();
+    resultVal = '';
+    inputVal = res.toString();
+   }
+  }
+ }
+
+ btnClear.addEventListener('click', clearInputVal);
+ btnDivide.addEventListener('click', function() { doOperation('/'); });
+ btnMultiply.addEventListener('click', function() { doOperation('*'); });
+ btnSubtract.addEventListener('click', function() { doOperation('-'); });
+ btnAdd.addEventListener('click', function() { doOperation('+'); });
+ btnEquals.addEventListener('click', equals);
+ btnDecimal.addEventListener('click', function() { updateInputVal('.'); });
+ btnZero.addEventListener('click', function() { updateInputVal('0'); });
+ btnOne.addEventListener('click', function() { updateInputVal('1'); });
+ btnTwo.addEventListener('click', function() { updateInputVal('2'); });
+ btnThree.addEventListener('click', function() { updateInputVal('3'); });
+ btnFour.addEventListener('click', function() { updateInputVal('4'); });
+ btnFive.addEventListener('click', function() { updateInputVal('5'); });
+ btnSix.addEventListener('click', function() { updateInputVal('6'); });
+ btnSeven.addEventListener('click', function() { updateInputVal('7'); });
+ btnEight.addEventListener('click', function() { updateInputVal('8'); });
+ btnNine.addEventListener('click', function() { updateInputVal('9'); });
+</script>
+</body>
+</html>
